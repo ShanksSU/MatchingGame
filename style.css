@@ -56,17 +56,17 @@ h2{
 
 .box label:nth-child(1) i{
     background: url(img/neko01.png);
-    animation: animate 0.5s linear infinite;
+    animation: animate 0.5s steps(5) infinite;
 }
 
 .box label:nth-child(2) i{
     background: url(img/neko02.png);
-    animation: animate 0.4s linear infinite;
+    animation: animate 0.4s steps(3) infinite;
 }
 
 .box label:nth-child(3) i{
     background: url(img/neko03.png);
-    animation: animate 0.7s linear infinite;
+    animation: animate 0.7s steps(7) infinite; //linear
 }
 
 @keyframes animate{
@@ -94,4 +94,30 @@ h2{
 .reset:active{
     /* background: rgb(0, 0, 0)(0, 0, 0); */
     transform:  scale(0.95);
+}
+
+
+button {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    animation: ripple 1s infinite;
+    opacity: 1;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(100);
+        opacity: 0;
+    }
 }
