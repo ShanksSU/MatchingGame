@@ -1,8 +1,27 @@
-async function play(name) {
+let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+
+checkboxes.forEach(checkbox => {
+    checkbox.onclick = function() {
+        if (this.checked) {
+            this.disabled = true;
+        }
+    }
+});
+
+async function handleReset(name) {
     console.log(name);
+    checkboxes.forEach(checkbox => {
+        checkbox.disabled = false;
+        checkbox.checked = false;
+    });
+    await play(name);
+}
+
+async function play(name) {
     const buffer = await getBuffer(name + ".aac");
     buffer && playAudio(buffer);
 }
+
 const audioContext = new AudioContext();
 const playAudio = function (buffer) {
     const source = audioContext.createBufferSource();
@@ -25,22 +44,3 @@ const getBuffer = function (url) {
         request.send();
     });
 };
-
-let checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
-
-checkboxes.forEach(checkbox => {
-    checkbox.onclick = function() {
-        if (this.checked) {
-            this.disabled = true;
-        }
-    }
-});
-
-async function handleReset(name) {
-    console.log(name);
-    checkboxes.forEach(checkbox => {
-        checkbox.disabled = false;
-        checkbox.checked = false;
-    });
-    await play(name);
-}
