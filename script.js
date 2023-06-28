@@ -8,6 +8,14 @@ checkboxes.forEach(checkbox => {
     }
 });
 
+const btn = document.querySelector('.reset');
+btn.addEventListener('click', () => {
+    checkboxes.forEach(checkbox => {
+        checkbox.disabled = false;
+        checkbox.checked = false;
+    });
+});
+
 async function handleReset(name) {
     console.log(name);
     checkboxes.forEach(checkbox => {
